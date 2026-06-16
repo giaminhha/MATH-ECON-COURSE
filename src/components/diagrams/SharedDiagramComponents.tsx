@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation, useSpring, useTransform } from 'framer-motion';
 
-export const drawLine = {
+export const drawLine: any = {
   hidden: { pathLength: 0, opacity: 0 },
   visible: { 
     pathLength: 1, opacity: 1,
@@ -9,7 +9,7 @@ export const drawLine = {
   }
 };
 
-export const fadeUpLabel = {
+export const fadeUpLabel: any = {
   hidden: { opacity: 0, y: 12 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };

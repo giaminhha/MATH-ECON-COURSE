@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const drawLine = {
+const drawLine: any = {
   hidden: { pathLength: 0, opacity: 0 },
   visible: { 
     pathLength: 1, opacity: 1,

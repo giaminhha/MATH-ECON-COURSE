@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String?  @unique
+  password  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // -- BASE MODEL (Nhân vật) --
+  money     Int      @default(500000) // Tiền mặt (VND)
+  debt      Int      @default(0)      // Tiền nợ (VND)
+  health    Int      @default(100)    // Sức khỏe (0-100)
+  mood      Int      @default(100)    // Tinh thần (0-100)
+  energy    Int      @default(100)    // Năng lượng (0-100)
+  
+  level     Int      @default(1)
+  exp       Int      @default(0)
+
+  completedLessons CompletedLesson[]
+}
+
+model CompletedLesson {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}

@@ -1,0 +1,195 @@
+@import 'tailwindcss';
+
+/* ─── Design Tokens: Living Diagram (Ray Dalio Style) ─── */
+:root {
+  /* Surface */
+  --canvas:        #F5F0E8;
+  --canvas-card:   #FFFBF5;
+  --canvas-dark:   #2C3E50;
+  --canvas-darker: #1a252f;
+  --grid-line:     #E8DFD0;
+
+  /* Ink */
+  --ink-primary:   #2C3441;
+  --ink-secondary: #6B7B8D;
+  --ink-label:     #8B7355;
+  --ink-faint:     #B8AFA3;
+  --ink-line:      #34495E;
+
+  /* Semantic — Toán-Tài chính */
+  --money:         #27AE60;   /* Tiền / Tăng trưởng */
+  --money-light:   rgba(39,174,96,0.10);
+  --debt:          #E74C3C;   /* Nợ / Rủi ro / Lạm phát */
+  --debt-light:    rgba(231,76,60,0.10);
+  --interest:      #F39C12;   /* Lãi suất */
+  --interest-light:rgba(243,156,18,0.12);
+  --time-var:      #3498DB;   /* Thời gian / biến x */
+  --time-light:    rgba(52,152,219,0.10);
+  --formula:       #9B59B6;   /* Công thức / kết quả */
+  --formula-light: rgba(155,89,182,0.10);
+
+  /* Borders & Shadows */
+  --border:        1px solid #E8DFD0;
+  --shadow-card:   0 2px 8px rgba(44,52,65,0.06);
+  --shadow-float:  0 8px 24px rgba(44,52,65,0.10);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@theme {
+  --font-sans:    var(--font-dm-sans), 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    var(--font-jetbrains), 'JetBrains Mono', ui-monospace, monospace;
+  --font-hand:    var(--font-caveat), 'Caveat', cursive;
+}
+
+/* ─── Base Reset ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--canvas);
+  color: var(--ink-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Grid Paper Background ─── */
+.grid-paper {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ─── Diagram Card ─── */
+.diagram-card {
+  background: var(--canvas-card);
+  border: var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.diagram-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--time-var), var(--money));
+  border-radius: 3px 0 0 3px;
+}
+
+/* ─── Theorem Plate ─── */
+.theorem-plate {
+  background: linear-gradient(135deg, var(--canvas-dark), var(--canvas-darker));
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.theorem-plate .grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+
+/* ─── Timeline Bar ─── */
+.timeline-bar {
+  height: 4px;
+  background: var(--grid-line);
+  border-radius: 2px;
+  position: relative;
+}
+.timeline-bar-fill {
+  height: 100%;
+  background: var(--ink-primary);
+  border-radius: 2px;
+  transition: width 600ms var(--ease-out-expo);
+}
+.timeline-bar-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--ink-primary);
+  border: 2px solid var(--canvas);
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  transition: left 600ms var(--ease-out-expo);
+  box-shadow: 0 0 0 3px rgba(44,52,65,0.12);
+}
+
+/* ─── Underline Input ─── */
+.underline-input {
+  border: none;
+  border-bottom: 2px solid var(--grid-line);
+  background: transparent;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--ink-primary);
+  width: 100%;
+  padding: 0.5rem 0.25rem;
+  transition: border-color 200ms ease;
+}
+.underline-input:focus { border-color: var(--time-var); }
+.underline-input.is-error { border-color: var(--debt); }
+.underline-input.is-success { border-color: var(--money); }
+
+/* ─── Flat Slider ─── */
+.flat-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--grid-line);
+  outline: none;
+  cursor: pointer;
+}
+.flat-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--ink-primary);
+  border: 3px solid white;
+  box-shadow: 0 1px 4px rgba(44,52,65,0.25);
+  cursor: grab;
+  transition: transform 150ms ease;
+}
+.flat-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.2);
+}
+
+/* ─── Hand-written Label ─── */
+.hand-label {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  color: var(--ink-label);
+  line-height: 1.3;
+}
+
+/* ─── Semantic Number Colors ─── */
+.num-money    { color: var(--money); }
+.num-debt     { color: var(--debt); }
+.num-interest { color: var(--interest); }
+.num-time     { color: var(--time-var); }
+.num-formula  { color: var(--formula); }
+
+/* ─── KaTeX overrides ─── */
+.katex-display {
+  overflow: visible !important;
+}
+.katex-display > .katex {
+  overflow: visible !important;
+  white-space: wrap !important;
+}
+.katex { overflow: visible !important; }
+
+/* ─── Scrollbar (thin & branded) ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--canvas); }
+::-webkit-scrollbar-thumb { background: var(--grid-line); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }

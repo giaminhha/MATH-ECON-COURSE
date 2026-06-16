@@ -273,7 +273,7 @@ export const GaussFlipDiagram = () => {
               transition: { duration: 0.7, ease: 'easeOut' },
             },
             labelsAppear: { opacity: 1 },
-          }}
+          } as any}
           style={{ originX: `${redStartX + n * (blockW + 5) / 2}px`, originY: `${baseY - (n * unitH) / 2}px` }}
         >
           {Array.from({ length: n }).map((_, i) => {
@@ -298,7 +298,7 @@ export const GaussFlipDiagram = () => {
         <motion.text x={redStartX + (n * (blockW + 5)) / 2 - 5} y={baseY + 22}
           textAnchor="middle" fill="var(--debt)" fontSize="12" fontWeight="bold"
           initial={{ opacity: 0 }} animate={controls}
-          variants={{ redAppear: { opacity: 1, transition: { duration: 0.4 } }, redFlip: { opacity: 1 }, redMerge: { opacity: 0 }, labelsAppear: { opacity: 0 } }}
+          variants={{ redAppear: { opacity: 1, transition: { duration: 0.4 } }, redFlip: { opacity: 1 }, redMerge: { opacity: 0 }, labelsAppear: { opacity: 0 } } as any}
         >
           Tháp lật
         </motion.text>
@@ -311,7 +311,7 @@ export const GaussFlipDiagram = () => {
           animate={controls}
           variants={{
             labelsAppear: { opacity: 1, transition: { duration: 0.5 } },
-          }}
+          } as any}
           style={{ fontFamily: 'var(--font-hand)' }}
         >
           n × (u₁ + uₙ) = Hình chữ nhật!
@@ -323,7 +323,7 @@ export const GaussFlipDiagram = () => {
           animate={controls}
           variants={{
             labelsAppear: { opacity: 1, transition: { duration: 0.5, delay: 0.3 } },
-          }}
+          } as any}
         >
           Chỉ cần NỬA → chia 2 → S_n = n(u₁ + uₙ)/2
         </motion.text>
@@ -333,7 +333,7 @@ export const GaussFlipDiagram = () => {
           textAnchor="middle" fill="var(--ink-secondary)" fontSize="11"
           initial={{ opacity: 0 }}
           animate={controls}
-          variants={{ labelsAppear: { opacity: 1, transition: { duration: 0.5, delay: 0.2 } } }}
+          variants={{ labelsAppear: { opacity: 1, transition: { duration: 0.5, delay: 0.2 } } } as any}
         >
           {n} cột
         </motion.text>

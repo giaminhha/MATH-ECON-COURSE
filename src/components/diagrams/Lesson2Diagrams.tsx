@@ -4,7 +4,7 @@ import { PiggyBank, CircleDollarSign } from 'lucide-react';
 import { NumberOdometer, FlowNode, FlowArrow, DiagramLabel, drawLine, fadeUpLabel } from './SharedDiagramComponents';
 
 // Preset cho vật rớt xuống
-const blockDrop = {
+const blockDrop: any = {
   hidden: { opacity: 0, y: -50 },
   visible: { opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.4 } }
 };

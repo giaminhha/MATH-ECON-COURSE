@@ -41,7 +41,7 @@ const fadeUp: any = {
   }),
 };
 
-const stagger = {
+const stagger: any = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 

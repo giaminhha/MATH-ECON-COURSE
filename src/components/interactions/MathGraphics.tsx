@@ -311,7 +311,7 @@ export const TrackingLens: React.FC<{ fn: (x: number) => number }> = ({ fn }) =>
   return (
     <g 
       onMouseMove={(e) => {
-        const svg = e.currentTarget.farthestViewportElement;
+        const svg = (e.currentTarget as any).farthestViewportElement || (e.currentTarget as any).ownerSVGElement;
         if(svg) {
           const pt = svg.createSVGPoint();
           pt.x = e.clientX;

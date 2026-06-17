@@ -155,7 +155,7 @@ export const SavingsPlanner: React.FC<SavingsPlannerProps> = ({
 
         {/* Stacking blocks */}
         <div className="flex-1 flex flex-col justify-end min-h-[180px] mt-6">
-          <div className="flex items-end justify-center gap-1.5 flex-wrap" style={{ maxHeight: 200, overflow: 'hidden' }}>
+          <div className="flex items-end justify-center gap-1 sm:gap-1.5 w-full" style={{ maxHeight: 200 }}>
             <AnimatePresence>
               {blocks.slice(0, 24).map((val, i) => {
                 const h = Math.max(8, (val / maxBlock) * 150); // max height 150px to leave room for label
@@ -169,11 +169,11 @@ export const SavingsPlanner: React.FC<SavingsPlannerProps> = ({
                     transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
                     className="relative flex flex-col justify-end"
                     style={{
-                      width: 'clamp(16px, 4vw, 32px)',
+                      width: 'clamp(12px, 4vw, 32px)',
                       borderRadius: '3px 3px 0 0',
                       background: isTarget ? '#ede5ff' : `rgba(39,174,96,${0.3 + (i / blocks.length) * 0.7})`,
                       border: isTarget ? '2px solid var(--formula)' : '1px solid var(--money)',
-                      flexShrink: 0,
+                      flexShrink: 1,
                     }}
                     title={`T${i + 1}: ${val}k`}
                   >

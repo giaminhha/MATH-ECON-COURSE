@@ -50,12 +50,12 @@ export const mockLessons: Record<string, any> = {
       {
         id: 's6',
         type: 'DECISION',
-        title: 'Bạn Sẽ Làm Gì Với Dữ Liệu?',
-        content: 'Sau khi có dãy số thu chi 3 tháng, bước tiếp theo là gì?',
+        title: 'Tháng Này Bạn Còn 2 Triệu',
+        content: '2 triệu còn lại sau tháng đầu tiên — bạn sẽ để nó ở đâu tối nay?',
         choices: [
-          { id: 'c1', text: 'Tìm quy luật để dự đoán tháng sau', feedback: 'Chính xác! Đó là mục tiêu của Toán học — từ dữ liệu quá khứ, dự đoán tương lai.', impact: { moodDelta: 1 } },
-          { id: 'c2', text: 'Xóa hết, không muốn biết', feedback: 'Đà điểu vùi đầu vào cát không làm sư tử biến mất đâu 😅', impact: { moodDelta: -1 } },
-          { id: 'c3', text: 'Đăng lên mạng xã hội', feedback: 'Flex thu nhập trên TikTok thì vui, nhưng không giúp bạn giàu hơn.', impact: { moodDelta: 0 } },
+          { id: 'c1', text: 'Chuyển ngay vào tài khoản riêng, không đụng vào', feedback: 'Bạn đã tạo ra $u_1 = 2$ triệu. Dãy số bắt đầu! Tháng sau bạn sẽ so sánh được ngay.', impact: { moneyDelta: 10, healthDelta: 0, moodDelta: 5, energyDelta: -5 } },
+          { id: 'c2', text: 'Để trong ví, lỡ cuối tháng cần thì tiêu dần', feedback: 'An toàn, nhưng tiền trong ví hay \'tự biến mất\'. Tháng sau $u_2$ có thể thấp hơn $u_1$ mà không rõ lý do.', impact: { moneyDelta: -5, healthDelta: 5, moodDelta: -5, energyDelta: 5 } },
+          { id: 'c3', text: 'Rủ bạn đi ăn để ăn mừng tháng đầu tiên ghi sổ', feedback: 'Tinh thần lên cao! Nhưng $u_1$ giảm còn khoảng 1.2 triệu. Dãy số của bạn bắt đầu khác kế hoạch rồi.', impact: { moneyDelta: -15, healthDelta: 5, moodDelta: 5, energyDelta: 0 } },
         ]
       }
     ]
@@ -120,12 +120,12 @@ export const mockLessons: Record<string, any> = {
       {
         id: 's7',
         type: 'DECISION',
-        title: 'Chiến Lược Tiết Kiệm',
-        content: 'Bạn muốn có 5 triệu sau 10 tháng. Mỗi tháng cần bỏ bao nhiêu?\n\n*(Gợi ý: $u_{10} = u_1 + 9d$. Nếu $u_1 = d$ thì $u_{10} = 10d = 5tr$)*',
+        title: 'Tiền Tiêu Vặt Hay Ống Heo?',
+        content: 'Hôm nay mẹ cho thêm 500k tiêu vặt. Bạn vừa học xong công thức $u_n = u_1 + (n-1)d$. Bạn sẽ làm gì với 500k đó?',
         choices: [
-          { id: 'c1', text: '500.000đ/tháng', feedback: 'Hoàn hảo! $10 \\times 500k = 5tr$. Toán học giúp bạn lên kế hoạch.', impact: { moneyDelta: 5 } },
-          { id: 'c2', text: '1 triệu/tháng', feedback: 'Thừa rồi! Bạn sẽ có 10tr — gấp đôi mục tiêu. Nhưng có cần thiết?', impact: { moneyDelta: 10 } },
-          { id: 'c3', text: 'Không biết, để tính sau', feedback: 'Không lên plan = plan thất bại. Quay lại xem công thức nhé!', impact: { moodDelta: -1 } },
+          { id: 'c1', text: 'Bỏ vào ống heo ngay — $d = 500k$, 10 tháng ra 5 triệu', feedback: 'Bạn đã biến lý thuyết thành hành động! $u_{10} = 500 + 9 \\times 500 = 5000k$. Tháp block bắt đầu xếp rồi.', impact: { moneyDelta: 10, healthDelta: 0, moodDelta: 5, energyDelta: 0 } },
+          { id: 'c2', text: 'Mua đồ ăn vặt + đồ dùng học tập còn thiếu', feedback: 'Chi tiêu có mục đích. Nhưng tháng này $d = 0$, tháp block của bạn không cao thêm được.', impact: { moneyDelta: -5, healthDelta: 5, moodDelta: 0, energyDelta: 5 } },
+          { id: 'c3', text: 'Rủ cả nhóm đi cà phê, split bill', feedback: 'Giờ học xong cần giải trí thôi mà! 500k bay hết nhưng mood cả nhóm lên cao. Tháng sau tính lại.', impact: { moneyDelta: -10, healthDelta: 5, moodDelta: -5, energyDelta: 5 } },
         ]
       }
     ]
@@ -205,13 +205,13 @@ export const mockLessons: Record<string, any> = {
             id: 'c1',
             text: 'Bắt đầu 100k tháng này, tăng dần — dù phải đợi thêm 1-2 tháng',
             feedback: 'Thực tế và bền vững. $u_1 = 100k$, $d = 100k$ → cần $n = 6$ tháng thay vì 5. Concert vẫn đến được!',
-            impact: { moneyDelta: 5, healthDelta: 0, mentalDelta: 10, energyDelta: 0 }
+            impact: { moneyDelta: 5, healthDelta: 0, moodDelta: 10, energyDelta: 0 }
           },
           {
             id: 'c2',
             text: 'Vay bạn bè 500k để tháng đầu bỏ đủ 200k, hoàn lại sau',
             feedback: 'Đảm bảo 5 tháng đúng kế hoạch, nhưng nợ là biến số ngoài công thức — nếu quên trả thì sao?',
-            impact: { moneyDelta: -10, healthDelta: -5, mentalDelta: 0, energyDelta: -5 }
+            impact: { moneyDelta: -10, healthDelta: -5, moodDelta: 0, energyDelta: -5 }
           },
           {
             id: 'c3',
@@ -282,12 +282,12 @@ export const mockLessons: Record<string, any> = {
         id: 's7',
         type: 'DECISION',
         title: '3 Triệu Hè Này Để Đâu?',
-        content: 'Mùa hè này bạn đi làm thêm và dành dụm được 3 triệu. Bạn để khoản này ở đâu?\n\n*Nhớ lại: $q = 0.96$ sau 1 năm — 3 triệu còn bảo giá trị làm sao?*',
+        content: 'Mùa hè này bạn đi làm thêm và dành dụm được 3 triệu. Bạn để khoản này ở đâu?\n\n*(Nhớ lại: $q = 0.96$ sau 1 năm — 3 triệu còn bảo giá trị làm sao?)*',
         choices: [
           {
             id: 'c1',
             text: 'Gửi vào tài khoản tiết kiệm có lãi — dù chỉ 3-4%',
-            feedback: 'Lãi suất ngân hàng ≈ lạm phát. Không thắng, nhưng không thua. Hơn giấu gối rất nhiều!',
+            feedback: 'Lãi suất ngân hàng $\\approx$ lạm phát. Không thắng, nhưng không thua. Hơn giấu gối rất nhiều!',
             impact: { moneyDelta: 5, healthDelta: 0, moodDelta: 5, energyDelta: 0 }
           },
           {
@@ -364,7 +364,7 @@ export const mockLessons: Record<string, any> = {
         id: 's7',
         type: 'DECISION',
         title: 'Bạn 17 Tuổi — Tiền Mất Nửa Khi Bạn 30?',
-        content: 'Bạn có 500k trong ngăn bàn từ hồi Tết. Lạm phát 5% — sau 13 năm, sức mua chỉ còn 250k. Bạn sẽ?',
+        content: 'Bạn có 500k trong ngăn bàn từ hồi Tết. Lạm phát 5% — sau 13 năm, 500k đó chỉ mua được bằng 250k hôm nay. Bạn sẽ?\n\n*(Nhắc lại: lạm phát 5% → half-life ~13.5 năm → nếu bạn 17 tuổi, lúc 30 tiền mất nửa)*',
         choices: [
           {
             id: 'c1',
@@ -447,12 +447,12 @@ export const mockLessons: Record<string, any> = {
         id: 's7',
         type: 'DECISION',
         title: 'Bạn Có 10 Triệu Từ Quà Tết',
-        content: 'Cả nhà mừng sinh nhật 18 tuổi tặng bạn tổng cộng 10 triệu. Khoản này để làm gì?',
+        content: 'Cả nhà mừng sinh nhật 18 tuổi tặng bạn tổng cộng 10 triệu. Khoản này để làm gì?\n\n*(Nhắc lại: lãi kép = giải pháp chống lạm phát; lãi kép sinh lãi trên lãi)*',
         choices: [
           {
             id: 'c1',
             text: 'Gửi ngân hàng lãi 7%/năm, chờ 20 năm',
-            feedback: '$10 \\times 1.07^{20} = 38.7$ triệu. 28 tuổi bạn có khoản này. Kiên nhẫn được thưởng.',
+            feedback: '$10 \\times 1.07^{20} = 38.7$ triệu. 38 tuổi bạn có khoản này. Kiên nhẫn được thưởng.',
             impact: { moneyDelta: 20, healthDelta: 0, moodDelta: 10, energyDelta: 0 }
           },
           {
@@ -521,7 +521,7 @@ export const mockLessons: Record<string, any> = {
         id: 's6',
         type: 'DECISION',
         title: 'An Và Bình — Bạn Chọn Ai?',
-        content: 'Bạn 17 tuổi, có 3 triệu tiết kiệm và mỗi tháng có thể dành được thêm 300k. Giống An hay Bình hơn?',
+        content: 'Bạn 17 tuổi, có 3 triệu tiết kiệm và mỗi tháng có thể dành được thêm 300k. Giống An hay Bình hơn?\n\n*(Nhắc lại: An bỏ ống heo 500k/tháng vs Bình gửi ngân hàng 5tr một lần — điểm bùng phát tháng 11)*',
         choices: [
           {
             id: 'c1',
@@ -560,6 +560,32 @@ export const mockLessons: Record<string, any> = {
         mathFormula: '$$ n = \\log_{1+r}(2) $$',
         content: 'Đường cong phức tạp được giải bằng cách bẻ trục Y sang Logarit.',
         theme: 'STANDARD'
+      },
+      {
+        id: 's2',
+        type: 'DECISION',
+        title: 'Anh/Chị Hỏi Muốn Tiền Gấp Đôi',
+        content: 'Anh hỏi: "Anh muốn gửi 10tr, bao lâu để có 40tr?" Bạn vừa học xong Quy tắc 72. Bạn trả lời anh thế nào?',
+        choices: [
+          {
+            id: 'c1',
+            text: '~24 năm — vì ×4 cần 2 lần nhân đôi',
+            feedback: 'Tuyệt! Bạn giải thích được cho anh. "Quy tắc 72 làm được cái này đưa!"',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: 10, energyDelta: 0 }
+          },
+          {
+            id: 'c2',
+            text: '12 năm',
+            feedback: 'Bạn trả lời chính xác cho x2, nhưng đó mới nhân đôi 1 lần (×2), chưa đến ×4.',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: -5, energyDelta: 0 }
+          },
+          {
+            id: 'c3',
+            text: '48 năm',
+            feedback: 'Quá lâu! Bạn đang nghĩ tuyến tính (×4 = 4 lần ×). Lãi kép nhanh hơn thế!',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: -10, energyDelta: 0 }
+          }
+        ]
       }
     ]
   },
@@ -578,6 +604,32 @@ export const mockLessons: Record<string, any> = {
         mathFormula: '$$ u_n = u_{n-1}(1+r) + A $$',
         content: 'Kết hợp giữa việc gửi thêm A mỗi tháng và để lãi kép r sinh sôi.',
         theme: 'STANDARD'
+      },
+      {
+        id: 's2',
+        type: 'DECISION',
+        title: 'An Bắt Đầu Lúc 18, Bình Lúc 28',
+        content: 'An và Bình cùng gửi 500k/tháng, lãi 6%/năm. An bắt đầu lúc 18, Bình lúc 28. Lúc 58 tuổi, ai có nhiều hơn?',
+        choices: [
+          {
+            id: 'c1',
+            text: 'An — nhiều hơn gần gấp đôi',
+            feedback: 'An gửi 40 năm, Bình 30 năm. Nhưng block đầu tiên của An có thêm 10 năm để phình! 10 năm sớm = khối tiền khổng lồ.',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: 10, energyDelta: 0 }
+          },
+          {
+            id: 'c2',
+            text: 'Bằng nhau',
+            feedback: 'Sai! Compound interest không tuyến tính. 10 năm sớm của An = giá trị cực lớn.',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: -5, energyDelta: 0 }
+          },
+          {
+            id: 'c3',
+            text: 'Bình — vì kinh nghiệm hơn',
+            feedback: 'Kinh nghiệm không thắng được thời gian trong lãi kép. Block Bình đơn giản là rơi trễ hơn!',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: -10, energyDelta: 0 }
+          }
+        ]
       }
     ]
   },
@@ -604,6 +656,32 @@ export const mockLessons: Record<string, any> = {
         mathFormula: '$$ S_n = A \\cdot \\frac{(1+r)[(1+r)^n - 1]}{r} $$',
         content: 'Khóa cuối cùng để bạn làm chủ toàn bộ bài tính toán học sinh tồn.',
         theme: 'STANDARD'
+      },
+      {
+        id: 's3',
+        type: 'DECISION',
+        title: 'Lời Hứa Với Bản Thân',
+        content: 'Bạn vừa tính ra: gửi 760k/tháng, lãi 0.5%, sau 36 tháng có 30 triệu. Bạn có làm được không?',
+        choices: [
+          {
+            id: 'c1',
+            text: 'Bắt đầu gửi ngay tháng này — 760k/tháng',
+            feedback: '$u_1$ của bạn đã được khởi tạo. Compound interest bắt đầu từ NGÀY BÂY GIỜ.',
+            impact: { moneyDelta: 10, healthDelta: 0, moodDelta: 5, energyDelta: 0 }
+          },
+          {
+            id: 'c2',
+            text: 'Lập kế hoạch chi tiết 3 năm trước',
+            feedback: 'Bạn đã dùng toán để thiết kế cuộc đời. Đó là sức mạnh thật sự.',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: 10, energyDelta: -5 }
+          },
+          {
+            id: 'c3',
+            text: 'Dạy lại cho bạn bè cách tính',
+            feedback: 'Tri thức nhân bản = lãi kép tri thức. $(1+r)^n$ applied to knowledge!',
+            impact: { moneyDelta: 0, healthDelta: 0, moodDelta: 10, energyDelta: -5 }
+          }
+        ]
       }
     ]
   }

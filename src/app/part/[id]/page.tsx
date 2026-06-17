@@ -8,7 +8,12 @@ import { redirect } from "next/navigation";
 
 export default async function PartPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const lessons = Object.values(mockLessons);
+  let lessons = Object.values(mockLessons);
+  if (id === 'part-1') {
+    lessons = lessons.filter((l: any) => l.module === 'finance_intro' || parseInt(l.id.replace('lesson-', '')) <= 11);
+  } else if (id === 'part-2') {
+    lessons = lessons.filter((l: any) => l.module === 'finance_probability' || parseInt(l.id.replace('lesson-', '')) >= 12);
+  }
 
   const session = await getServerSession(authOptions);
   if (!session || !session.user?.email) {

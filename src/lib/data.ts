@@ -11,7 +11,7 @@ export const parts = [
     title: "Mùa 2: Hack Thời Gian",
     description: "Toán 11: Cấp số, Giới hạn (Limits)",
     lessonsCount: 14,
-    unlocked: false,
+    unlocked: true,
   },
   {
     id: "part-3",

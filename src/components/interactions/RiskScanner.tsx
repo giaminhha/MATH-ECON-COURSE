@@ -160,7 +160,7 @@ export const RiskScanner: React.FC<RiskScannerProps> = ({
           onClick={() => handleScan('HIGH')}
           className="flex-1 py-4 rounded-xl bg-red-100 text-red-700 font-bold hover:bg-red-200 border-2 border-red-200 transition-colors"
         >
-          Cao<br/><span className="text-xs font-normal">>10%</span>
+          Cao<br/><span className="text-xs font-normal">&gt;10%</span>
         </button>
         <button 
           onClick={() => handleScan('MED')}

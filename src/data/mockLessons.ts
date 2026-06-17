@@ -684,5 +684,59 @@ export const mockLessons: Record<string, any> = {
         ]
       }
     ]
+  },
+  'lesson-12': {
+    id: 'lesson-12',
+    title: 'Bài 12: Tung Đồng Xu (Xác suất cơ bản)',
+    description: 'Chương 5: Xúc Xắc Cuộc Đời - Rủi ro & Xác suất',
+    module: 'finance_probability',
+    status: 'AVAILABLE',
+    theme: 'STANDARD',
+    slides: [
+      {
+        id: 's1', type: 'STORY', title: 'Kế Hoạch Hoàn Hảo... Bị Phá',
+        content: 'Bạn lên kế hoạch Annuity hoàn hảo. Nhưng xe hỏng, ốm nặng, mất đồ. Kế hoạch không sai — nhưng cuộc đời có xúc xắc.',
+        diagramKey: 'PLAN_DISRUPTION',
+        theme: 'STANDARD'
+      },
+      {
+        id: 's2', type: 'DIAGRAM', title: 'Không Gian Mẫu',
+        content: 'Mỗi tình huống có một tập hợp các kết quả có thể xảy ra — đó là Không gian mẫu Ω.',
+        diagramKey: 'SAMPLE_SPACE',
+        theme: 'STANDARD'
+      },
+      {
+        id: 's3', type: 'THEOREM', title: 'Công Thức Xác Suất',
+        mathFormula: '$$P(A) = \\frac{|A|}{|\\Omega|}$$',
+        content: 'Xác suất = số kết quả thuận lợi / tổng số kết quả. P nằm trong [0, 1].',
+        theme: 'STANDARD'
+      },
+      {
+        id: 's4', type: 'MINIGAME', title: 'Máy Tung Xu',
+        content: 'Tung xu nhiều lần — xem tỷ lệ có hội tụ về 50% không.',
+        interactionKey: 'COIN_FLIP_SIM',
+        variables: { minFlips: 30 }
+      },
+      {
+        id: 's5', type: 'INFO', title: 'Bảng Xác Suất Đời Thường',
+        content: 'Mỗi rủi ro đều có xác suất cụ thể. Biết xác suất = có thể chuẩn bị.',
+        theme: 'STANDARD'
+      },
+      {
+        id: 's6', type: 'MINIGAME', title: 'Máy Quét Rủi Ro',
+        content: 'Phân loại 8 sự kiện rủi ro theo mức xác suất: Cao, Trung bình, Thấp.',
+        interactionKey: 'RISK_SCANNER',
+        variables: { passingScore: 6 }
+      },
+      {
+        id: 's7', type: 'DECISION', title: 'Bảo Hiểm Xe Máy',
+        content: 'Xe cũ 8tr. P(hỏng) = 40%, sửa TB 1.5tr. BH 800k/năm. Mua không?',
+        choices: [
+          { id: 'c1', text: 'Mua bảo hiểm 800k — biết trước chi phí, không lo bất ngờ', feedback: 'Chi phí xác định 800k thay vì rủi ro 0~3tr. Bạn đang trade tiền lấy sự yên tâm. Bài 20 sẽ dạy cách tính xem deal này có xứng không.', impact: { moneyDelta: -5, healthDelta: 5, moodDelta: 10, energyDelta: 0 } },
+          { id: 'c2', text: 'Không mua, tự để dành quỹ sửa xe riêng 1.5tr', feedback: 'Self-insure! E(chi) = 600k, bạn để 1.5tr = dư buffer. Nhưng nếu hỏng 2 lần thì quỹ không đủ.', impact: { moneyDelta: -5, healthDelta: 0, moodDelta: 5, energyDelta: 5 } },
+          { id: 'c3', text: 'Không mua, kệ đi, hỏng tính sau', feedback: 'Không plan = plan thất bại. Nếu hỏng đúng tháng cần tiền gấp → domino sụp. Bài 13 sẽ chỉ rõ.', impact: { moneyDelta: 0, healthDelta: -5, moodDelta: -10, energyDelta: 10 } },
+        ]
+      }
+    ]
   }
 };

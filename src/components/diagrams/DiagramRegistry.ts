@@ -31,6 +31,10 @@ import {
   TwoFriendsDiagram,
   RaceOfTwoLinesDiagram,
 } from './Lesson7Diagrams';
+import {
+  PlanDisruptionDiagram,
+  SampleSpaceDiagram,
+} from './Lesson12Diagrams';
 
 // A mapping of all diagram components available in the system
 export const DiagramRegistry = {
@@ -66,4 +70,7 @@ export const DiagramRegistry = {
   // Lesson 7
   TWO_FRIENDS: TwoFriendsDiagram,
   RACE_TWO_LINES: RaceOfTwoLinesDiagram,
+  // Lesson 12
+  PLAN_DISRUPTION: PlanDisruptionDiagram,
+  SAMPLE_SPACE: SampleSpaceDiagram,
 };

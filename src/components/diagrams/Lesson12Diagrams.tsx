@@ -78,17 +78,17 @@ export const PlanDisruptionDiagram = () => {
           { m: 7, label: "Ốm nặng", cost: "-5tr", delay: 1.8 },
           { m: 10, label: "Mất ĐT", cost: "-3tr", delay: 2.6 }
         ].map(ev => (
-          <motion.g 
-            key={ev.m} 
-            transform={`translate(${ev.m*60 + 50}, 120)`}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: ev.delay, type: "spring" }}
-          >
-            <text textAnchor="middle" fontSize={24}>⚡</text>
-            <text y={20} textAnchor="middle" fill="var(--debt)" fontSize={12} fontWeight="bold">{ev.label}</text>
-            <text y={35} textAnchor="middle" fill="var(--debt)" fontSize={12} fontWeight="bold">{ev.cost}</text>
-          </motion.g>
+          <g key={ev.m} transform={`translate(${ev.m*60 + 50}, 120)`}>
+            <motion.g 
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: ev.delay, type: "spring" }}
+            >
+              <text textAnchor="middle" fontSize={24}>⚡</text>
+              <text y={20} textAnchor="middle" fill="var(--debt)" fontSize={12} fontWeight="bold">{ev.label}</text>
+              <text y={35} textAnchor="middle" fill="var(--debt)" fontSize={12} fontWeight="bold">{ev.cost}</text>
+            </motion.g>
+          </g>
         ))}
       </svg>
     </div>

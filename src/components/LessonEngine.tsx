@@ -28,7 +28,11 @@ export const LessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) => {
     moneyDelta: 0, debtDelta: 0, healthDelta: 0, moodDelta: 0, energyDelta: 0,
   });
   const [interactionResult, setInteractionResult] = useState<{
-    isCorrect: boolean; score: number; feedback?: string;
+    isCorrect: boolean;
+    score: number;
+    feedback?: string;
+    keepAlive?: boolean;
+    silent?: boolean;
   } | null>(null);
   const [visibleMessageCount, setVisibleMessageCount] = useState(1);
   
@@ -153,8 +157,13 @@ export const LessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) => {
     }));
   };
 
-  const handleInteractionComplete = (isCorrect: boolean, score: number, impact?: StatImpact) => {
-    setInteractionResult({ isCorrect, score });
+  const handleInteractionComplete = (
+    isCorrect: boolean, 
+    score: number, 
+    impact?: StatImpact,
+    options?: { silent?: boolean, keepAlive?: boolean }
+  ) => {
+    setInteractionResult({ isCorrect, score, ...options });
     if (impact) applyImpact(impact);
   };
 
@@ -329,7 +338,7 @@ export const LessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) => {
               )}
 
               {/* ═══ MINIGAME ═══ */}
-              {currentSlide.type === 'MINIGAME' && InteractiveComponent && !interactionResult && (
+              {currentSlide.type === 'MINIGAME' && InteractiveComponent && (!interactionResult || interactionResult.keepAlive) && (
                 <div className="flex-1 flex flex-col p-4 min-h-0">
                   <div
                     className="flex-1 rounded-xl overflow-hidden relative"
@@ -364,7 +373,7 @@ export const LessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) => {
 
 
               {/* ═══ FEEDBACK (sau decision/minigame) ═══ */}
-              {interactionResult && (
+              {interactionResult && !interactionResult.silent && (
                 <SlideFeedback
                   isCorrect={interactionResult.isCorrect}
                   isDecision={currentSlide.type === 'DECISION'}

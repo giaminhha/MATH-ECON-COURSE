@@ -19,7 +19,13 @@ export const CyberLessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) =
     moneyDelta: 0, debtDelta: 0, healthDelta: 0, moodDelta: 0, energyDelta: 0
   });
   
-  const [interactionResult, setInteractionResult] = useState<{ isCorrect: boolean; score: number, feedback?: string } | null>(null);
+  const [interactionResult, setInteractionResult] = useState<{
+    isCorrect: boolean;
+    score: number;
+    feedback?: string;
+    keepAlive?: boolean;
+    silent?: boolean;
+  } | null>(null);
 
   const slides = lessonData.slides || [];
   const currentSlide = slides[currentSlideIndex];
@@ -60,12 +66,18 @@ export const CyberLessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) =
     }
   };
 
+  const applyImpact = (impact: StatImpact) => {
+    setAccumulatedImpact(prev => ({
+      moneyDelta: (prev.moneyDelta || 0) + (impact.moneyDelta || 0),
+      debtDelta: (prev.debtDelta || 0) + (impact.debtDelta || 0),
+      healthDelta: (prev.healthDelta || 0) + (impact.healthDelta || 0),
+      moodDelta: (prev.moodDelta || 0) + (impact.moodDelta || 0),
+      energyDelta: (prev.energyDelta || 0) + (impact.energyDelta || 0),
+    }));
+  };
+
   const handleDecision = (choice: DecisionChoice) => {
-    const newImpact = { ...accumulatedImpact };
-    if (choice.impact.moneyDelta) newImpact.moneyDelta = (newImpact.moneyDelta || 0) + choice.impact.moneyDelta;
-    if (choice.impact.debtDelta) newImpact.debtDelta = (newImpact.debtDelta || 0) + choice.impact.debtDelta;
-    if (choice.impact.moodDelta) newImpact.moodDelta = (newImpact.moodDelta || 0) + choice.impact.moodDelta;
-    setAccumulatedImpact(newImpact);
+    applyImpact(choice.impact);
 
     setInteractionResult({
       isCorrect: true,
@@ -74,14 +86,12 @@ export const CyberLessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) =
     });
   };
 
-  const handleInteractionComplete = (isCorrect: boolean, score: number, impact?: StatImpact) => {
-    if (impact && isCorrect) {
-      const newImpact = { ...accumulatedImpact };
-      // sum up stats if needed
-      setAccumulatedImpact(newImpact);
-    }
-    
-    // We override feedback locally to match cyber theme
+  const handleInteractionComplete = (
+    isCorrect: boolean, 
+    score: number, 
+    impact?: StatImpact,
+    options?: { silent?: boolean, keepAlive?: boolean }
+  ) => {
     const feedbackMsg = isCorrect ? "Thẩm định: TRÙNG KHỚP! Phá khóa dữ liệu." : "Thẩm định: TỪ CHỐI! Tham số không hợp lệ.";
     setInteractionResult({ isCorrect, score, feedback: feedbackMsg });
   };
@@ -200,7 +210,7 @@ export const CyberLessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) =
               </div>
             )}
 
-            {currentSlide.type === 'MINIGAME' && InteractiveComponent && !interactionResult && (
+            {currentSlide.type === 'MINIGAME' && InteractiveComponent && (!interactionResult || interactionResult.keepAlive) && (
               <div className="w-full flex-shrink-0 border border-cyan-800 bg-slate-950 relative p-4 flex flex-col shadow-[inset_0_0_20px_rgba(6,182,212,0.05)] mt-8 animate-in zoom-in-95 duration-500">
                 <div className="absolute -top-2 left-4 bg-slate-900 px-2 py-0.5 text-[9px] text-cyan-400 tracking-widest uppercase border border-cyan-800">
                   [ OVERRIDE MODULE INITIATED ]
@@ -215,7 +225,7 @@ export const CyberLessonEngine: React.FC<LessonEngineProps> = ({ lessonData }) =
               </div>
             )}
 
-            {interactionResult && (
+            {interactionResult && !interactionResult.silent && (
               <div className={`p-6 mt-8 border border-${interactionResult.isCorrect ? 'cyan-500' : 'rose-600'} bg-${interactionResult.isCorrect ? 'cyan-950/30' : 'rose-950/20'} animate-in fade-in relative shadow-[0_0_15px_rgba(${interactionResult.isCorrect ? '6,182,212' : '225,29,72'},0.15)]`}>
                 <div className={`text-xl font-bold uppercase tracking-widest text-${interactionResult.isCorrect ? 'cyan-300' : 'rose-400'} flex items-center gap-3`}>
                   <ShieldAlert /> SYS_RESP: {interactionResult.isCorrect ? 'ACCEPTED' : 'DENIED'}

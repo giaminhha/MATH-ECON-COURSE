@@ -33,7 +33,7 @@ export const RiskEstimator: React.FC<RiskEstimatorProps> = ({ onComplete }) => {
 
   const handleCalculate = () => {
     setShowResult(true);
-    onComplete(true, 100);
+    onComplete(true, 100, undefined, { silent: true, keepAlive: true });
   };
 
   return (

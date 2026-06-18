@@ -47,7 +47,7 @@ export const CoinFlipSim: React.FC<CoinFlipSimProps> = ({
   useEffect(() => {
     if (total >= minFlips && !completed) {
       setCompleted(true);
-      onComplete(true, 100);
+      onComplete(true, 100, undefined, { silent: true, keepAlive: true });
     }
   }, [total, minFlips, completed, onComplete]);
 

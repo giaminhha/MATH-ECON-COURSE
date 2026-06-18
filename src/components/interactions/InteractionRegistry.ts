@@ -18,7 +18,7 @@ import { HalflifeCalc } from './HalflifeCalc';
 import { CompoundGrowth } from './CompoundGrowth';
 import { BreakpointFinder } from './BreakpointFinder';
 import { CoinFlipSim } from './CoinFlipSim';
-import { RiskScanner } from './RiskScanner';
+import { RiskEstimator } from './RiskEstimator';
 import type { InteractionProps } from '@/types/lesson';
 import React from 'react';
 
@@ -64,5 +64,5 @@ export const InteractionRegistry: Record<string, React.FC<any>> = {
 
   // Lesson 12
   'COIN_FLIP_SIM': CoinFlipSim,
-  'RISK_SCANNER': RiskScanner,
+  'RISK_ESTIMATOR': RiskEstimator,
 };

@@ -171,32 +171,39 @@
 
 ---
 
-### Slide 6 — MINIGAME: "Máy Quét Rủi Ro"
+### Slide 6 — MINIGAME: "Bản Đồ Rủi Ro Của Bạn"
 **Slide type**: `MINIGAME`
-**InteractionKey**: `RISK_SCANNER`
-**Component**: `RiskScanner` (file mới)
+**InteractionKey**: `RISK_ESTIMATOR`
+**Component**: `RiskEstimator` (file mới)
 
-**Layout**: 3 ô drop-zone ngang: "Cao (>10%)" | "Trung bình (1-10%)" | "Thấp (<1%)". 8 card rủi ro bên dưới, drag & drop vào đúng ô.
+**Triết lý thiết kế**: Không có đáp án đúng/sai. Xác suất rủi ro phụ thuộc vào hoàn cảnh mỗi người (xe mới vs xe cũ, nghề nghiệp nguy hiểm vs văn phòng, v.v.). Mục tiêu là tập **thói quen suy nghĩ định lượng** về rủi ro — dù con số có sai, quy trình mới là quan trọng.
 
-**8 cards**:
-1. 🔧 Xe hỏng vặt → Cao
-2. 📱 Mất điện thoại → Trung bình
-3. 🤒 Ốm >3 ngày → Trung bình
-4. 🚗 Tai nạn xe → Thấp
-5. 💸 Mất việc → Trung bình
-6. 🏠 Cháy nhà → Thấp
-7. 🦷 Đau răng cần nhổ → Cao
-8. ✈️ Chuyến bay bị huỷ → Trung bình
+**Layout**: Danh sách 5 rủi ro theo kịch bản nhân vật. Mỗi rủi ro có 1 slider (0%–50%) để ước tính P/năm. Sau khi kéo hết, bấm "Tính Quỹ" → hệ thống tính tổng chi phí kỳ vọng/năm → gợi ý mức quỹ khẩn cấp.
 
-**Scoring**: Đúng ô = +1, sai = 0. Hiện kết quả + giải thích từng card. Pass khi ≥ 6/8.
+**5 rủi ro trong kịch bản** (nhân vật: sinh viên mới ra trường, xe máy 5 tuổi, làm văn phòng):
+| # | Rủi ro | Slider range | Chi phí ước tính |
+|---|--------|-------------|------------------|
+| 1 | 🔧 Xe máy hỏng vặt | 0–50% | 1.5tr/lần |
+| 2 | 🤒 Ốm phải nghỉ làm | 0–30% | 2tr/lần |
+| 3 | 📱 Mất/vỡ điện thoại | 0–20% | 3tr/lần |
+| 4 | 💸 Thu nhập giảm đột ngột | 0–20% | 5tr (1 tháng lương) |
+| 5 | 🦷 Đau răng/nha khoa | 0–40% | 800k/lần |
+
+**Sau khi ấn "Tính Quỹ"**:
+- Tính: `Tổng E(chi phí/năm) = Σ P_i × Cost_i`
+- Hiện kết quả: "Bạn ước tính sẽ tốn khoảng **X triệu/năm** cho sự cố"
+- Gợi ý: "Quỹ khẩn cấp tối thiểu = X × 1.5 (buffer) ≈ Y triệu"
+- Nút **"So sánh với thống kê"**: hiện phạm vi tham khảo (VD: 8–18% là hợp lý cho xe 5 tuổi) — không phê phán, chỉ để tham khảo
+
+**Điều kiện hoàn thành**: Kéo tất cả 5 slider + bấm "Tính Quỹ".
 
 **mockLessons data**:
 ```ts
 {
-  id: 's6', type: 'MINIGAME', title: 'Máy Quét Rủi Ro',
-  content: 'Phân loại 8 sự kiện rủi ro theo mức xác suất: Cao, Trung bình, Thấp.',
-  interactionKey: 'RISK_SCANNER',
-  variables: { passingScore: 6 }
+  id: 's6', type: 'MINIGAME', title: 'Bản Đồ Rủi Ro Của Bạn',
+  content: 'Ước tính xác suất rủi ro của BẠN — không có đúng/sai. Kết quả giúp tính mức quỹ khẩn cấp phù hợp.',
+  interactionKey: 'RISK_ESTIMATOR',
+  variables: {}
 }
 ```
 
@@ -337,29 +344,44 @@
 
 ---
 
-### Slide 4 — MINIGAME: "Chuỗi Domino"
+### Slide 4 — MINIGAME: "Cỗ Máy Tháng"
 **Slide type**: `MINIGAME`
-**InteractionKey**: `DOMINO_CHAIN`
-**Component**: `DominoChain` (file mới)
+**InteractionKey**: `MONTH_SIM`
+**Component**: `MonthSim` (file mới)
 
-**Layout**: Ngang, 3 quân domino xếp hàng + control panel dưới.
+**Triết lý thiết kế**: Không có slider tự do, không có đúng/sai về con số xác suất. Xác suất đã được **cố định trong kịch bản** (dựa trên dữ liệu thống kê). Người chơi học bằng cách **quan sát mô phỏng** và tự nhận ra quy luật.
 
-**Mechanics**:
-- 3 quân, mỗi quân có slider P(đổ): 10%~90%
-- Button "Chạy" → animation domino (physics spring)
-- Câu hỏi 1: "P(cả 3 đổ) = ?" → Input box → check = P1 × P2 × P3
-- Câu hỏi 2: "P(ít nhất 1 đổ) = ?" → Input box → check = 1 - (1-P1)(1-P2)(1-P3)
-- Chạy 100 lần → histogram "số quân đổ" → so sánh thực tế vs lý thuyết
+**Kịch bản cố định** (không thay đổi được):
+- P(xe hỏng/tháng) = **15%**
+- P(ốm/tháng) = **5%**
+- Hai biến cố độc lập
 
-**onComplete**: Trả lời đúng cả 2 câu hỏi.
+**Layout**: 2 cột.
+- **Cột trái**: Panel điều khiển
+  - Button "Mô phỏng 1 tháng" → chạy 1 trial, highlight kết quả
+  - Button "Mô phỏng 100 tháng" → chạy nhanh
+  - Counter: số tháng đã chạy
+  - Bảng đếm 4 kết quả: 🔧🤒 | 🔧✅ | ✅🤒 | ✅✅
+- **Cột phải**: Sơ đồ cây trực quan
+  - Tree diagram 2 tầng (giống Slide 2)
+  - Các xác suất lý thuyết được hiển thị sẵn
+  - Sau mỗi trial, highlight nhánh kết quả tương ứng trong 1s
+  - Sau 50+ trial, hiện cột **"Thực tế vs Lý thuyết"** cạnh nhau
+
+**Điểm học tập tự nhiên** (không hỏi, tự hiện):
+- Sau ~20 trial: hiện tooltip *"Chú ý: 🔧🤒 rất hiếm — đúng như P × P = 0.75%"*
+- Sau ~50 trial: hiện tooltip *"Thực tế đang hội tụ về lý thuyết — đây là Luật số lớn!"*
+- Sau ~100 trial: hiện insight *"Cứ 100 tháng, khoảng 1 tháng xảy ra cả xe hỏng lẫn ốm. Bạn đã chuẩn bị chưa?"*
+
+**Điều kiện hoàn thành**: Chạy tối thiểu **50 mô phỏng**.
 
 **mockLessons data**:
 ```ts
 {
-  id: 's4', type: 'MINIGAME', title: 'Chuỗi Domino',
-  content: 'Xếp 3 quân domino, chỉnh xác suất đổ — tính P(cả 3 đổ) và P(ít nhất 1 đổ).',
-  interactionKey: 'DOMINO_CHAIN',
-  variables: { numDominoes: 3 }
+  id: 's4', type: 'MINIGAME', title: 'Cỗ Máy Tháng',
+  content: 'Mô phỏng 50+ tháng ngẫu nhiên — xem tần suất thực tế có khớp với lý thuyết P(A∩B) không.',
+  interactionKey: 'MONTH_SIM',
+  variables: { minTrials: 50 }
 }
 ```
 

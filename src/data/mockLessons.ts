@@ -723,10 +723,10 @@ export const mockLessons: Record<string, any> = {
         theme: 'STANDARD'
       },
       {
-        id: 's6', type: 'MINIGAME', title: 'Máy Quét Rủi Ro',
-        content: 'Phân loại 8 sự kiện rủi ro theo mức xác suất: Cao, Trung bình, Thấp.',
-        interactionKey: 'RISK_SCANNER',
-        variables: { passingScore: 6 }
+        id: 's6', type: 'MINIGAME', title: 'Bản Đồ Rủi Ro Của Bạn',
+        content: 'Ước tính xác suất rủi ro của BẠN — không có đúng/sai. Kết quả giúp tính mức quỹ khẩn cấp phù hợp.',
+        interactionKey: 'RISK_ESTIMATOR',
+        variables: {}
       },
       {
         id: 's7', type: 'DECISION', title: 'Bảo Hiểm Xe Máy',

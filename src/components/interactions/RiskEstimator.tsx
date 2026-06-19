@@ -4,7 +4,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface RiskEstimatorProps {
-  onComplete: (isCorrect: boolean, score: number) => void;
+  onComplete: (
+    isCorrect: boolean, 
+    score: number, 
+    impact?: any, 
+    options?: { silent?: boolean, keepAlive?: boolean }
+  ) => void;
 }
 
 const RISKS = [

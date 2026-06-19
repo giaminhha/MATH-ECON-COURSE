@@ -77,5 +77,10 @@ export interface UserStats {
 export interface InteractionProps {
   variables: any;
   currentStats?: UserStats; // Truyền stats hiện tại vào để UI render nếu cần
-  onComplete: (isCorrect: boolean, score: number, impact?: StatImpact) => void;
+  onComplete: (
+    isCorrect: boolean, 
+    score: number, 
+    impact?: StatImpact,
+    options?: { silent?: boolean, keepAlive?: boolean }
+  ) => void;
 }

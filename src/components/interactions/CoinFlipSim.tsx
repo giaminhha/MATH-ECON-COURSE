@@ -5,7 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface CoinFlipSimProps {
   variables?: { minFlips?: number };
-  onComplete: (isCorrect: boolean, score: number) => void;
+  onComplete: (
+    isCorrect: boolean, 
+    score: number, 
+    impact?: any, 
+    options?: { silent?: boolean, keepAlive?: boolean }
+  ) => void;
 }
 
 export const CoinFlipSim: React.FC<CoinFlipSimProps> = ({

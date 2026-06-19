@@ -14,10 +14,9 @@ interface RiskEstimatorProps {
 
 const RISKS = [
   { id: '1', icon: '🔧', label: 'Xe máy hỏng vặt', maxP: 50, cost: 1.5, stats: 'Thống kê: 8–18% cho xe 5 tuổi' },
-  { id: '2', icon: '🤒', label: 'Ốm phải nghỉ làm', maxP: 30, cost: 2, stats: 'Thống kê: 5–15% tuỳ sức khoẻ' },
+  { id: '2', icon: '🏥', label: 'Ốm vặt phải đi bệnh viện', maxP: 30, cost: 2, stats: 'Thống kê: 5–15% tuỳ sức khoẻ' },
   { id: '3', icon: '📱', label: 'Mất/vỡ điện thoại', maxP: 20, cost: 3, stats: 'Thống kê: 5–10% tuỳ thói quen' },
-  { id: '4', icon: '💸', label: 'Thu nhập giảm', maxP: 20, cost: 5, stats: 'Thống kê: 5–15% tuỳ ngành nghề' },
-  { id: '5', icon: '🦷', label: 'Đau răng/nha khoa', maxP: 40, cost: 0.8, stats: 'Thống kê: 10–25%' },
+  { id: '4', icon: '💼', label: 'Tiệm làm thêm đuổi việc', maxP: 20, cost: 5, stats: 'Thống kê: 10–20% đối với sinh viên' },
 ];
 
 export const RiskEstimator: React.FC<RiskEstimatorProps> = ({ onComplete }) => {
